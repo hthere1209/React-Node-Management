@@ -1,0 +1,24 @@
+{
+  "name": "ai-powered-portfolio",
+  "version": "1.0.0",
+  "description": "A modern portfolio website with React, Node.js, and AI chatbot",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npm start\"",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "nodejs",
+    "ai",
+    "chatbot"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
