@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-content">
           <div className="logo gradient-text">
-            {'<Dev/>'}
+            {'<FullStackDev/>'}
           </div>
 
           <div className={`nav-links ${menuOpen ? 'active' : ''}`}>

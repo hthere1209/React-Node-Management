@@ -11,9 +11,9 @@ const Hero = () => {
   const roles = [
     'Full Stack Developer',
     'AI Enthusiast',
-    'UI/UX Designer',
+    'Quick Learner',
     'Problem Solver',
-    'Tech Innovator'
+    'Effective communicator'
   ];
 
   useEffect(() => {
@@ -49,52 +49,52 @@ const Hero = () => {
             <HiLightningBolt className="tag-icon" />
             <span>AI-Powered Portfolio</span>
           </div>
-          
+
           <h1 className="hero-title">
-            Hi, I'm <span className="gradient-text">Your Name</span>
+            Hi, I'm <span className="gradient-text">Ronnel J</span>
           </h1>
-          
+
           <div className="hero-subtitle">
             <span className="typing-text">{text}</span>
             <span className="cursor">|</span>
           </div>
-          
+
           <p className="hero-description">
-            I craft exceptional digital experiences using cutting-edge technologies.
-            Specializing in React, Node.js, and AI integration to build the future of web.
+            I craft exceptional digital experiences using various technologies.
+            Specializing in Next.js, Node.js, Python, and AI integration to build the future of web.
           </p>
-          
+
           <div className="hero-buttons">
-            <button 
+            <button
               className="btn btn-primary"
               onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
             >
               View Projects
             </button>
-            <button 
+            <button
               className="btn btn-secondary"
               onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
             >
               Get In Touch
             </button>
           </div>
-          
+
           <div className="hero-stats">
             <div className="stat">
               <div className="stat-number gradient-text">50+</div>
               <div className="stat-label">Projects</div>
             </div>
             <div className="stat">
-              <div className="stat-number gradient-text">5+</div>
+              <div className="stat-number gradient-text">8+</div>
               <div className="stat-label">Years Exp</div>
             </div>
             <div className="stat">
-              <div className="stat-number gradient-text">100%</div>
+              <div className="stat-number gradient-text">95%</div>
               <div className="stat-label">Satisfaction</div>
             </div>
           </div>
         </div>
-        
+
         <div className="hero-visual">
           <div className="geometric-shape shape-1"></div>
           <div className="geometric-shape shape-2"></div>
@@ -108,25 +108,29 @@ const Hero = () => {
             <div className="window-content">
               <pre>
                 <code>
-{`const developer = {
-  name: "Your Name",
-  skills: ["React", "Node.js"],
+                  {`const fullStackDeveloper = {
+  name: "Ronnel Jatulan",
+  skills: ["Next.js", "Node.js", "Python", "AI"],
   passion: "Building AI ⚡",
   status: "Available",
-  superpower: "Code + Coffee"
+  superpower: "Code + Coffee + AI"
 };
 
-developer.code();`}
+fullStackDeveloper.code();`}
                 </code>
               </pre>
             </div>
           </div>
         </div>
       </div>
-      
+
       <div className="scroll-indicator">
         <div className="mouse">
           <div className="wheel"></div>
+        </div>
+        <div className="arrow">
+          <span></span>
+          <span></span>
         </div>
         <div className="arrow">
           <span></span>
