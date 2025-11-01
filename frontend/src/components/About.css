@@ -71,6 +71,12 @@
   animation-delay: 2s;
 }
 
+.badge-4 {
+  top: 10%;
+  left: -10%;
+  animation-delay: 1s;
+}
+
 .about-text {
   color: var(--text-secondary);
 }

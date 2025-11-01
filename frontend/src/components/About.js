@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaUser, FaRocket, FaLightbulb, FaHandshake } from 'react-icons/fa';
+import { FaUser, FaRocket, FaUserFriends, FaLightbulb, FaHandshake } from 'react-icons/fa';
 import { HiLightningBolt } from 'react-icons/hi';
 import './About.css';
 
@@ -8,7 +8,7 @@ const About = () => {
     <section className="about fade-in-section" id="about">
       <div className="container">
         <h2 className="section-title">About Me</h2>
-        
+
         <div className="about-content">
           <div className="about-image">
             <div className="image-wrapper">
@@ -16,7 +16,7 @@ const About = () => {
                 <FaUser className="avatar-icon" />
               </div>
               <div className="floating-badge badge-1">
-                <span>React</span>
+                <span>Next.js</span>
               </div>
               <div className="floating-badge badge-2">
                 <span>Node.js</span>
@@ -24,54 +24,56 @@ const About = () => {
               <div className="floating-badge badge-3">
                 <span>AI</span>
               </div>
+              <div className="floating-badge badge-4">
+                <span>Python</span>
+              </div>
             </div>
           </div>
-          
+
           <div className="about-text">
             <div className="text-highlight">
               <FaRocket className="highlight-icon" />
-              <h3>Passionate About Technology</h3>
+              <h3>Passionate About Web development</h3>
             </div>
-            
+
             <p>
-              I'm a <strong>Full Stack Developer</strong> with a passion for creating 
-              innovative solutions that blend cutting-edge technology with exceptional 
-              user experiences. My journey in tech started with curiosity and has 
-              evolved into a career dedicated to building impactful digital products.
+              I'm a <strong>Full Stack Developer</strong> with a passion for creating
+              innovative solutions that blend various technologies with exceptional
+              user experiences. My coding in tech started with curiosity and has
+              evolved into a career dedicated to building impactful software products.
             </p>
-            
+
             <p>
-              Specializing in <strong>React, Node.js, and AI integration</strong>, 
-              I transform complex problems into elegant, scalable solutions. I believe 
-              in writing clean, maintainable code and staying ahead of the curve with 
-              emerging technologies.
+              Specializing in <strong>Next.js, Python, Node.js, API integrations, and AI</strong>,
+              I transform complex problems into elegant, scalable solutions. I believe
+              in writing clean, maintainable code and am confident in my ability to learn and adapt to new technologies quickly.
             </p>
-            
+
             <div className="highlights-grid">
               <div className="highlight-card">
                 <div className="highlight-icon-wrapper">
-                  <FaRocket />
+                  <FaUserFriends />
                 </div>
-                <h4>Mission-Driven</h4>
-                <p>Focused on delivering value through technology</p>
+                <h4>Attentive listener</h4>
+                <p>I am a great listener of others needs and concerns, and I am always willing to help others.</p>
               </div>
-              
+
               <div className="highlight-card">
                 <div className="highlight-icon-wrapper">
                   <FaLightbulb />
                 </div>
                 <h4>Innovation First</h4>
-                <p>Always exploring cutting-edge solutions</p>
+                <p>Always exploring my own solutions</p>
               </div>
-              
+
               <div className="highlight-card">
                 <div className="highlight-icon-wrapper">
                   <FaHandshake />
                 </div>
                 <h4>Collaborative</h4>
-                <p>Team player with strong communication</p>
+                <p>Great team player with strong communication</p>
               </div>
-              
+
               <div className="highlight-card">
                 <div className="highlight-icon-wrapper">
                   <HiLightningBolt />

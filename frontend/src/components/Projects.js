@@ -82,7 +82,7 @@ const Projects = () => {
   return (
     <section className="projects fade-in-section" id="projects">
       <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
+        <h2 className="section-title">Proudest Projects</h2>
         
         <div className="projects-intro">
           <p>
