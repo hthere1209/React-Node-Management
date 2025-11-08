@@ -58,7 +58,7 @@ function App() {
       
       <footer className="footer">
         <div className="container">
-          <p>© 2025 Your Name. Crafted with React & AI. All rights reserved.</p>
+          <p>© 2025 Ronnel Jatulan. Crafted with React & AI. All rights reserved.</p>
         </div>
       </footer>
     </div>

@@ -7,24 +7,15 @@ const Projects = () => {
 
   const projects = [
     {
-      id: 1,
-      title: 'AI Content Generator',
-      description: 'An AI-powered platform that generates high-quality content using GPT-4. Features real-time generation, content optimization, and multi-format export.',
-      icon: FaBrain,
-      tags: ['React', 'Node.js', 'OpenAI', 'MongoDB'],
-      category: 'ai',
-      demoLink: '#',
-      githubLink: '#'
-    },
-    {
       id: 2,
       title: 'E-Commerce Platform',
       description: 'Full-featured online marketplace with real-time inventory, payment integration, admin dashboard, and advanced analytics.',
       icon: FaShoppingCart,
       tags: ['Next.js', 'Stripe', 'PostgreSQL', 'AWS'],
       category: 'fullstack',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://dealseek.com/',
+      githubLink: 'https://github.com/hthere1209/chatgpt-next-webapp',
+      backgroundImage: "./assets/1.png"
     },
     {
       id: 3,
@@ -33,39 +24,22 @@ const Projects = () => {
       icon: FaComments,
       tags: ['React', 'Socket.io', 'WebRTC', 'Redis'],
       category: 'fullstack',
-      demoLink: '#',
+      demoLink: 'https://groq-ai.vercel.app/',
+      backgroundImage: "./assets/3.png",
       githubLink: '#'
     },
     {
       id: 4,
       title: 'Analytics Dashboard',
-      description: 'Comprehensive analytics platform with beautiful data visualizations, real-time metrics, and customizable reports.',
+      description: 'Starting out as my university final year project, Quiklearn is an AI-powered tool, that creates quizzes and voice-enabled flashcards from course PDFs with a focus on usability and accessibility. This app has served well over twenty-five students helping them to assimilate and retain what they study better.',
       icon: FaChartLine,
       tags: ['Vue.js', 'D3.js', 'Python', 'FastAPI'],
-      category: 'frontend',
-      demoLink: '#',
-      githubLink: '#'
-    },
-    {
-      id: 5,
-      title: 'AI Image Generator',
-      description: 'Create stunning images from text descriptions using Stable Diffusion. Features style transfer and image editing.',
-      icon: FaImage,
-      tags: ['React', 'Python', 'Stable Diffusion', 'S3'],
       category: 'ai',
-      demoLink: '#',
-      githubLink: '#'
+      demoLink: 'https://quiklearn.app/',
+      githubLink: '#',
+      backgroundImage: "./assets/4.png"
     },
-    {
-      id: 6,
-      title: 'Task Management System',
-      description: 'Collaborative project management tool with kanban boards, time tracking, team collaboration, and reporting.',
-      icon: FaTasks,
-      tags: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-      category: 'fullstack',
-      demoLink: '#',
-      githubLink: '#'
-    }
+    
   ];
 
   const categories = [
@@ -82,7 +56,7 @@ const Projects = () => {
   return (
     <section className="projects fade-in-section" id="projects">
       <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
+        <h2 className="section-title">Proudest Projects</h2>
         
         <div className="projects-intro">
           <p>
@@ -92,7 +66,7 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="filter-buttons">
+        {/* <div className="filter-buttons">
           {categories.map(cat => (
             <button
               key={cat.id}
@@ -102,7 +76,7 @@ const Projects = () => {
               {cat.label}
             </button>
           ))}
-        </div>
+        </div> */}
 
         <div className="projects-grid">
           {filteredProjects.map((project, index) => {
@@ -111,10 +85,15 @@ const Projects = () => {
               <div 
                 className="project-card"
                 key={project.id}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  backgroundImage: project.backgroundImage // Add background image dynamically here
+                }}
               >
                 <div className="project-image">
-                  <div className="image-overlay"></div>
+                  <div className='image-setting'>
+                    <img src={project.backgroundImage}></img>
+                  </div>
                   <IconComponent className="project-icon" />
                 </div>
               
@@ -129,11 +108,11 @@ const Projects = () => {
                 </div>
                 
                 <div className="project-links">
-                  <a href={project.demoLink} className="project-link">
+                  <a href={project.demoLink} className="project-link"  target="_blank">
                     <span>Live Demo</span>
                     <span className="arrow">→</span>
                   </a>
-                  <a href={project.githubLink} className="project-link">
+                  <a href={project.githubLink} className="project-link"  target="_blank">
                     <span>GitHub</span>
                     <span className="arrow">→</span>
                   </a>
