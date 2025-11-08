@@ -89,6 +89,7 @@ const Contact = () => {
               })}
             </div>
 
+
             <div className="social-section">
               <h3>Connect With Me</h3>
               <div className="social-links">
