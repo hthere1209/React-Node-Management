@@ -118,7 +118,6 @@ Run with:
 ```bash
 docker-compose -f docker-compose.dev.yml up
 ```
-
 ## Troubleshooting
 
 ### Port Already in Use
