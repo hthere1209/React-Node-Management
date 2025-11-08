@@ -14,7 +14,8 @@ const Projects = () => {
       tags: ['React', 'Node.js', 'OpenAI', 'MongoDB'],
       category: 'ai',
       demoLink: '#',
-      githubLink: '#'
+      githubLink: '#',
+      backgroundImage: 'url(/asset/1.png)'
     },
     {
       id: 2,
@@ -111,7 +112,10 @@ const Projects = () => {
               <div 
                 className="project-card"
                 key={project.id}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  backgroundImage: project.backgroundImage // Add background image dynamically here
+                }}
               >
                 <div className="project-image">
                   <div className="image-overlay"></div>

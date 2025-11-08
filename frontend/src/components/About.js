@@ -12,8 +12,9 @@ const About = () => {
         <div className="about-content">
           <div className="about-image">
             <div className="image-wrapper">
-              <div className="avatar-placeholder">
-                <FaUser className="avatar-icon" />
+              {/* <FaUser className="avatar-icon" /> */}
+              <div className='avatar-img'>
+                <img src="/assets/Ronnel.png" alt="Ronnel Jatulan" className="avatar-icon" />
               </div>
               <div className="floating-badge badge-1">
                 <span>Next.js</span>
