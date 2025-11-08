@@ -42,14 +42,14 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: FaEnvelope, label: 'Email', value: 'your.email@example.com', link: 'mailto:your.email@example.com' },
-    { icon: FaPhone, label: 'Phone', value: '+1 (234) 567-890', link: 'tel:+1234567890' },
-    { icon: FaMapMarkerAlt, label: 'Location', value: 'Your City, Country', link: null }
+    { icon: FaEnvelope, label: 'Email', value: 'htherecrane@gmail.com', link: 'mailto:your.email@example.com' },
+    { icon: FaPhone, label: 'Phone', value: '+1 (917) xxx-xx37', link: 'tel:+1234567890' },
+    { icon: FaMapMarkerAlt, label: 'Location', value: 'Manila, Phlippines', link: null }
   ];
 
   const socialLinks = [
     { icon: FaLinkedin, label: 'LinkedIn', url: 'https://linkedin.com' },
-    { icon: FaGithub, label: 'GitHub', url: 'https://github.com' },
+    { icon: FaGithub, label: 'GitHub', url: 'https://github.com/hthere1209' },
     { icon: FaTwitter, label: 'Twitter', url: 'https://twitter.com' },
     { icon: FaEnvelope, label: 'Email', url: 'mailto:your.email@example.com' }
   ];
