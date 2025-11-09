@@ -35,8 +35,11 @@ app.use(express.json());
 // });
 
 app.post('/api/chat', async (req, res) => {
+  const { message, conversationHistory = [] } = req.body;
+
+  const lowerMessage = message.toLowerCase();
+  if(lowerMessage.match(/hello|hi|hey|greet|good morning|good evening|skill|technology|tech stack|programming|language|framework|project|work|portfolio|built|created|developed|experience|background|career|job|worked|contact|email|reach|hire|available|talk/)) {
   try {
-    const { message, conversationHistory = [] } = req.body;
 
     // 1. Prepare messages for OpenAI
     const messages = [
@@ -45,14 +48,7 @@ app.post('/api/chat', async (req, res) => {
       { role: 'user', content: message },
     ];
 
-    // 2. Get AI response from OpenAI
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages,
-      temperature: 0.7,
-    });
-
-    const botResponse = completion.choices[0]?.message?.content || 'Sorry, I have no answer right now.';
+    const botResponse = await generateBotResponse(message);
 
     // 3. Save message + response to Supabase
     await supabase.from('chat_messages').insert([
@@ -73,6 +69,44 @@ app.post('/api/chat', async (req, res) => {
     console.error('Chat error:', error);
     res.status(500).json({ error: 'Failed to generate response' });
   }
+} else {
+  try {
+
+    // 1. Prepare messages for OpenAI
+    const messages = [
+      { role: 'system', content: 'You are a helpful AI assistant that answers portfolio-related questions.' },
+      ...conversationHistory.map((m) => ({ role: m.role, content: m.content })),
+      { role: 'user', content: message },
+    ];
+
+    // 2. Get AI response from OpenAI
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages,
+      temperature: 0.7,
+    });
+
+    const botResponse = completion.choices[0]?.message?.content || 'Sorry, I have no answer right now.';
+    // 3. Save message + response to Supabase
+    await supabase.from('chat_messages').insert([
+      {
+        user_message: message,
+        bot_response: botResponse,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+
+    // 4. Send response to frontend
+    res.json({
+      response: botResponse,
+      timestamp: new Date().toISOString(),
+    });
+
+  } catch (error) {
+    console.error('Chat error:', error);
+    res.status(500).json({ error: 'Failed to generate response' });
+  }
+}
 });
 
 // Contact form endpoint
@@ -94,8 +128,7 @@ app.post('/api/contact', async (req, res) => {
 });
 
 // Simple AI response generator
-async function generateBotResponse(message, history) {
-  const lowerMessage = message.toLowerCase();
+async function generateBotResponse(message) {
   
   // Portfolio-specific responses
   const responses = {
@@ -129,22 +162,21 @@ async function generateBotResponse(message, history) {
   // Determine response category
   let category = 'default';
   
-  if (lowerMessage.match(/hello|hi|hey|greet|good morning|good evening/)) {
+  if (message.match(/hello|hi|hey|greet|good morning|good evening/)) {
     category = 'greetings';
-  } else if (lowerMessage.match(/skill|technology|tech stack|programming|language|framework/)) {
+  } else if (message.match(/skill|technology|tech stack|programming|language|framework/)) {
     category = 'skills';
-  } else if (lowerMessage.match(/project|work|portfolio|built|created|developed/)) {
+  } else if (message.match(/project|work|portfolio|built|created|developed/)) {
     category = 'projects';
-  } else if (lowerMessage.match(/experience|background|career|job|worked/)) {
+  } else if (message.match(/experience|background|career|job|worked/)) {
     category = 'experience';
-  } else if (lowerMessage.match(/contact|email|reach|hire|available|talk/)) {
+  } else if (message.match(/contact|email|reach|hire|available|talk/)) {
     category = 'contact';
   }
 
   // Get random response from category
   const categoryResponses = responses[category];
-  const response = categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
-
+   const response = categoryResponses[Math.floor(Math.random() * categoryResponses.length)];
   // Simulate AI processing delay
   await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
 
