@@ -53,14 +53,25 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
     setIsTyping(true);
 
     try {
+      // Prepare conversationHistory for backend
+      const conversationHistory = messages.map(m => ({
+        role: m.sender === 'user' ? 'user' : 'assistant',
+        content: m.text
+      }));
+
+      // Send message to backend API
       const response = await axios.post('/api/chat', {
         message: inputValue,
-        conversationHistory: messages.slice(-5)
+        conversationHistory: conversationHistory.slice(-5) // only send recent messages
       });
+
+      const botText =
+        response.data?.response ||
+        "Sorry, I didn’t quite get that. Could you rephrase?";
 
       const botMessage = {
         id: messages.length + 2,
-        text: response.data.response,
+        text: botText,
         sender: 'bot',
         timestamp: new Date()
       };
@@ -73,7 +84,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
       console.error('Chat error:', error);
       const errorMessage = {
         id: messages.length + 2,
-        text: "Sorry, I'm having trouble connecting right now. Please try again or use the contact form below!",
+        text: "⚠️ Oops! I’m having trouble connecting to the server right now. Please try again later.",
         sender: 'bot',
         timestamp: new Date()
       };
@@ -106,6 +117,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
   return (
     <div className="chatbot-overlay">
       <div className="chatbot-container">
+        {/* Header */}
         <div className="chatbot-header">
           <div className="header-left">
             <div className="bot-avatar">
@@ -128,6 +140,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
+        {/* Messages */}
         <div className="chatbot-messages">
           {messages.map((message) => (
             <div 
@@ -173,6 +186,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
           <div ref={messagesEndRef} />
         </div>
 
+        {/* Quick Prompts */}
         {messages.length <= 1 && (
           <div className="quick-prompts">
             {quickPrompts.map((prompt, index) => (
@@ -187,6 +201,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
           </div>
         )}
 
+        {/* Input area */}
         <div className="chatbot-input">
           <input
             ref={inputRef}
@@ -206,6 +221,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
+        {/* Footer */}
         <div className="chatbot-footer">
           <span className="footer-text">
             Powered by AI • Always learning
@@ -217,4 +233,3 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
 };
 
 export default ChatBot;
-

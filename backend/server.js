@@ -1,29 +1,74 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const { OpenAI } = require('openai') ;
+const { createClient } = require ('@supabase/supabase-js');
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // AI Chatbot endpoint
+// app.post("/api/chat", async (req, res) => {
+//   const { message } = req.body;
+
+//   const prompt = `
+// You are a knowledgeable and helpful AI chatbot designed to answer questions about B. A. Akith Chandinu... // Prompt continues`;
+
+//   try {
+//     const result = await model.generateContent(prompt);
+//     res.json(result.response.text());
+//     console.log("Response generated successfully.");
+//   } catch (error) {
+//     console.error("Error generating response:", error);
+//     res.status(500).send("Error processing request.");
+//   }
+// });
+
 app.post('/api/chat', async (req, res) => {
   try {
-    const { message, conversationHistory } = req.body;
+    const { message, conversationHistory = [] } = req.body;
 
-    // This is a simple AI chatbot that provides portfolio-related responses
-    // You can integrate with OpenAI, Anthropic, or other AI APIs by replacing this logic
-    const botResponse = await generateBotResponse(message, conversationHistory);
+    // 1. Prepare messages for OpenAI
+    const messages = [
+      { role: 'system', content: 'You are a helpful AI assistant that answers portfolio-related questions.' },
+      ...conversationHistory.map((m) => ({ role: m.role, content: m.content })),
+      { role: 'user', content: message },
+    ];
 
-    res.json({ 
-      response: botResponse,
-      timestamp: new Date().toISOString()
+    // 2. Get AI response from OpenAI
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages,
+      temperature: 0.7,
     });
+
+    const botResponse = completion.choices[0]?.message?.content || 'Sorry, I have no answer right now.';
+
+    // 3. Save message + response to Supabase
+    await supabase.from('chat_messages').insert([
+      {
+        user_message: message,
+        bot_response: botResponse,
+        created_at: new Date().toISOString(),
+      },
+    ]);
+
+    // 4. Send response to frontend
+    res.json({
+      response: botResponse,
+      timestamp: new Date().toISOString(),
+    });
+
   } catch (error) {
     console.error('Chat error:', error);
     res.status(500).json({ error: 'Failed to generate response' });
