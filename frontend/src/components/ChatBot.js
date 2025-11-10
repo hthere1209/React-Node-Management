@@ -16,7 +16,6 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -26,6 +25,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
   }, [messages]);
 
   useEffect(() => {
+     console.log(process.env.REACT_APP_BACKEND_URL);
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
@@ -40,7 +40,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
-
+ console.log(process.env.REACT_APP_BACKEND_URL);
     const userMessage = {
       id: messages.length + 1,
       text: inputValue,
@@ -60,7 +60,7 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
       }));
 
       // Send message to backend API
-      const response = await axios.post(`${backendUrl}/api/chat`, {
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/chat`, {
         message: inputValue,
         conversationHistory: conversationHistory.slice(-5) // only send recent messages
       });
