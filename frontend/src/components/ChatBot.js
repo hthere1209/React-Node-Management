@@ -16,7 +16,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
-
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -60,7 +60,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
       }));
 
       // Send message to backend API
-      const response = await axios.post('/api/chat', {
+      const response = await axios.post(`${backendUrl}/api/chat`, {
         message: inputValue,
         conversationHistory: conversationHistory.slice(-5) // only send recent messages
       });
