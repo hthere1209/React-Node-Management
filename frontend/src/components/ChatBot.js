@@ -60,7 +60,7 @@ const ChatBot = ({ isOpen, setIsOpen }) => {
       }));
 
       // Send message to backend API
-      const response = await axios.post(`/api/chat`, {
+      const response = await axios.post(`https://ronnel-talented-dev-backend.onrender.com/api/chat`, {
         message: inputValue,
         conversationHistory: conversationHistory.slice(-5) // only send recent messages
       });
