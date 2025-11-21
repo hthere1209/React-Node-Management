@@ -51,7 +51,7 @@ const Hero = () => {
           </div>
 
           <h1 className="hero-title">
-            Hi, I'm <span className="gradient-text">Ronnel J</span>
+            Hi, I'm <span className="gradient-text">Jasjek J</span>
           </h1>
 
           <div className="hero-subtitle">
@@ -109,7 +109,7 @@ const Hero = () => {
               <pre>
                 <code>
                   {`const fullStackDeveloper = {
-  name: "Ronnel Jatulan",
+  name: "Jasjek J",
   skills: ["Next.js", "Node.js", "Python", "AI"],
   passion: "Building AI ⚡",
   status: "Available",

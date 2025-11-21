@@ -43,8 +43,8 @@ const Contact = () => {
 
   const contactInfo = [
     { icon: FaEnvelope, label: 'Email', value: 'htherecrane@gmail.com', link: 'mailto:your.email@example.com' },
-    { icon: FaPhone, label: 'Phone', value: '+1 (917) xxx-xx37', link: 'tel:+1234567890' },
-    { icon: FaMapMarkerAlt, label: 'Location', value: 'Manila, Phlippines', link: null }
+    { icon: FaPhone, label: 'Phone', value: '+48 796 303 974', link: 'tel:+1234567890' },
+    { icon: FaMapMarkerAlt, label: 'Location', value: 'Warsaw, Poland ', link: null }
   ];
 
   const socialLinks = [
