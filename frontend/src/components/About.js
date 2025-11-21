@@ -38,7 +38,7 @@ const About = () => {
             </div>
 
             <p>
-              I'm a <strong>Full Stack Developer</strong> with a passion for creating
+              I'm a <strong>Personal Mentor & Full Stack Developer</strong> with a passion for creating
               innovative solutions that blend various technologies with exceptional
               user experiences. My coding in tech started with curiosity and has
               evolved into a career dedicated to building impactful software products.
